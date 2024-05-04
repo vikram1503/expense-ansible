@@ -69,3 +69,9 @@
   - name: daemon reload
     ansible.builtin.systemd_service:
       daemon_reload: true
+
+  - name: start and enable backend
+    ansible.builtin.service:
+      name: backend
+      state: started
+      enabled: yes    
