@@ -2,7 +2,8 @@
   become: yes
   hosts: backend
   vars:
-
+    login_host: db.imvicky.online
+    login_password: ExpenseApp@1
 
   tasks:
   - name: disable default nodejs
@@ -45,3 +46,20 @@
     ansible.builtin.copy:
      src: backend.service
      dest: /etc/systemd/system/backend.service
+
+  - name: install python mysql dependencies
+    ansible.builtin.pip:
+     name:
+     - PyMySQL
+     - cryptography
+     executable: pip3.9 
+
+  - name: import data into mysql
+    community.mysql.mysql_info:
+      login_user: root
+      login_password: "{{ login_password }}"
+      login_host: "{{ login_host }}"
+      target: /app/schema/backend.sql
+      state: import
+      name: all
+
