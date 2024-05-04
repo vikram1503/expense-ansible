@@ -7,10 +7,10 @@
         name: nginx
         state: latest
 
-    #- name: start and enable nginx
+    - name: start and enable nginx
       ansible.builtin.service:
         name: nginx
-        state: started
+        state: present
         enabled: yes
 
 
