@@ -13,6 +13,7 @@
         state: started
         enabled: yes
 
+
     - name: delete default website
       ansible.builtin.file:
         path: /usr/share/nginx/html
@@ -38,6 +39,6 @@
       ansible.builtin.service:
         name: nginx
         state: restarted
-        
+
 
     
